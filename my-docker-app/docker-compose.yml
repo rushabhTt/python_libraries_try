@@ -1,10 +1,18 @@
+# Remove the 'version' field at the top of the file
+
 services:
   app:
     build: .
     volumes:
-      - ./data:/data
+      # local (key): inside container(value) directories mapping
+      - ./data:/app/data
+      - ./config:/app/config
+    # set environment variables inside the Docker container.
     environment:
-      - CONFIG_PATH=/app/config.yaml
+      - CONFIG_PATH=/app/config/config.yaml
+    # Add these lines to ensure output is visible
+    tty: true
+    stdin_open: true
 
   web:
     image: nginx:alpine

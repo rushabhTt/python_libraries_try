@@ -1,0 +1,6 @@
+name: Docker
+# path: /app/data/app.db: This specifies the file path where the database is located or should be created. In this case, the database file is located at /app/data/app.db inside the container.
+database:
+  path: /app/data/app.db
+web:
+  port: 8080
