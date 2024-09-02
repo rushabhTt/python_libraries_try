@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    volumes:
+      - ./data:/data
+    environment:
+      - CONFIG_PATH=/app/config.yaml
+
+  web:
+    image: nginx:alpine
+    volumes:
+      - ./web:/usr/share/nginx/html
+    ports:
+      - "8080:80"

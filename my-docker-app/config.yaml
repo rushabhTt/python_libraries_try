@@ -1,0 +1,5 @@
+name: Docker
+database:
+  path: /data/app.db
+web:
+  port: 8080
