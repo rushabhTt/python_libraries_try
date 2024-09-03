@@ -1,0 +1,22 @@
+rabbitmq:
+  host: rabbitmq
+  port: 5672
+  username: guest
+  password: guest
+
+mongodb:
+  host: mongodb
+  port: 27017
+  database: analytics_db
+
+api_gateway:
+  host: api_gateway
+  port: 5000
+
+storage_service:
+  host: storage_service
+  port: 5000
+
+web_interface:
+  host: web_interface
+  port: 8080

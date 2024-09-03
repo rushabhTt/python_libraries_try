@@ -1,0 +1,56 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongodb:/data/db
+
+  data_ingestion:
+    build: ./data_ingestion
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./config:/app/config
+
+  data_processing:
+    build: ./data_processing
+    depends_on:
+      - rabbitmq
+      - mongodb
+    volumes:
+      - ./config:/app/config
+
+  storage_service:
+    build: ./storage_service
+    depends_on:
+      - mongodb
+    volumes:
+      - ./config:/app/config
+
+  api_gateway:
+    build: ./api_gateway
+    ports:
+      - "5000:5000"
+    depends_on:
+      - storage_service
+    volumes:
+      - ./config:/app/config
+
+  web_interface:
+    build: ./web_interface
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api_gateway
+    volumes:
+      - ./config:/app/config

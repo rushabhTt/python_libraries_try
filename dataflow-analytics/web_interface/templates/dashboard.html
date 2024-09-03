@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - DataFlow Analytics Platform</title>
+</head>
+<body>
+    <h1>Analytics Dashboard</h1>
+    <table border="1">
+        <tr>
+            <th>Timestamp</th>
+            <th>User ID</th>
+            <th>Action</th>
+            <th>Value</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.timestamp }}</td>
+            <td>{{ item.user_id }}</td>
+            <td>{{ item.action }}</td>
+            <td>{{ item.value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
